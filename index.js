@@ -25,8 +25,10 @@ const displayCategory = (newsId) => {
 		<button onclick="loadNewseId('${news.category_id}')" type="button" class="btn btn-warning me-2 ">${news.category_name}</button>
 		`;
 
-		newsCategory.appendChild(category);
-	});
+        newsCategory.appendChild(category);
+         
+    });
+    
 };
 
 const loadNewseId = async (id) => {
@@ -48,24 +50,38 @@ const loadNewseId = async (id) => {
 
 const displayNews = (allNews) => {
     console.log(allNews);
+    // toggleSpinner(true); 
     
- const showAllNews = document.getElementById("allNews");
 
+    const noNewsItem = document.getElementById("no-item-found");
+    if (allNews.length === 0) {
+		noNewsItem.classList.remove("d-none");
+    } else {
+		noNewsItem.classList.add("d-none");
+    }
+
+
+
+ const showAllNews = document.getElementById("allNews");
+ 
+//   toggleSpinner(false)
  showAllNews.textContent = "";
 
 	allNews.forEach((showNews) => {
 		// console.log(showNews)
 
-       
-    const showAllNewsDiv = document.createElement("div");
       
+    const showAllNewsDiv = document.createElement("div");
+       
       
 	showAllNewsDiv.classList.add("row");
-
+   
 	showAllNewsDiv.innerHTML = `
-        
+     
        <div class="col-md-4 mb-5">
-        <img src='${showNews.thumbnail_url}' class="img-fluid rounded-start" alt="...">
+        <img src='${
+			showNews.thumbnail_url
+		}' class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -89,7 +105,9 @@ const displayNews = (allNews) => {
      }</p>  </div>
 
 <div class="d-flex align-items-center mx-4  ">
-<button onclick=" loadNewsDetail('${showNews._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<button onclick="  loadNewsDetail('${
+		showNews._id
+	}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Detail View
 </button>
 
@@ -101,10 +119,23 @@ const displayNews = (allNews) => {
  </div>
 
  `;
-
-	showAllNews.appendChild(showAllNewsDiv);
-});
+         showAllNews.appendChild(showAllNewsDiv);
+       
+    });
+    
+   
 };
+
+const toggleSpinner = (isLoading) => {
+	const loaderSection = document.getElementById("loader");
+
+	if (isLoading) {
+		loaderSection.classList.remove("d-none");
+	} else {
+		loaderSection.classList.add("d-none");
+	}
+};
+
 
 
 const loadNewsDetail = async (news) => {
