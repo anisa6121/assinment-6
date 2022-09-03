@@ -69,7 +69,11 @@ const displayNews = (allNews) => {
 			showNews.author.img
 		}" alt="..." class="thumblain img-thumbnail img-fluid"   > </div>
 
-    
+     <div class="d-flex align-items-center mx-4" >  <p >${
+		showNews.author.name ? showNews.author.name : "No Name Found"
+     }</p> </div>
+
+ 
       
 
 
