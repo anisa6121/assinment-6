@@ -73,7 +73,12 @@ const displayNews = (allNews) => {
 		showNews.author.name ? showNews.author.name : "No Name Found"
      }</p> </div>
 
- 
+     <div class="d-flex align-items-center" ><p> view: ${
+		showNews.total_view
+     }</p>  </div>
+                </div>
+             
+            </div>
       
 
 
