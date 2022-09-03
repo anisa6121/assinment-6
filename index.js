@@ -1,82 +1,75 @@
 const loadCategory = async () => {
-    try {
-      const url = ` https://openapi.programming-hero.com/api/news/categories `;
-      const res = await fetch(url);
-      const data = await res.json();
-      // console.log(data)
-      displayCategory(data.data.news_category);  
-        
-    } catch (error) {
-        console.log(error);
-    }
-
+	try {
+		const url = ` https://openapi.programming-hero.com/api/news/categories `;
+		const res = await fetch(url);
+		const data = await res.json();
+		// console.log(data)
+		displayCategory(data.data.news_category);
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const displayCategory = (newsId) => {
 	// console.log(newsId)
 	newsId.forEach((news) => {
-	// console.log(news);
+		console.log(news);
 
-        const newsCategory = document.getElementById("news-category");
-        
-        const category = document.createElement("button");
+		const newsCategory = document.getElementById("news-category");
+
+		const category = document.createElement("button");
 		category.classList.add("btn");
 		category.innerHTML = `
 		<button onclick="loadNewseId('${news.category_id}')" type="button" class="btn btn-warning me-2 ">${news.category_name}</button>
 		`;
 
-        newsCategory.appendChild(category);
-         
-    });
-    
+		newsCategory.appendChild(category);
+	});
 };
 
 const loadNewseId = async (id) => {
-	
-    try {
-      const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      // console.log(data.data);
-      displayNews(data.data);  
-        
-    } catch (error) {
-        console.log(error);
-    }
 
-    
+	toggleSpinner(true);
+	try {
+		const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+		const res = await fetch(url);
+		const data = await res.json();
+		// console.log(data.data);
+		displayNews(data.data);
+	} catch (error) {
+		// toggleSpinner(false);
 
+		console.log(error);
+	}
 };
 
 const displayNews = (allNews) => {
-    console.log(allNews);
-    // toggleSpinner(true); 
-    
+	console.log(allNews);
+	toggleSpinner(false);
 
-    const noNewsItem = document.getElementById("no-item-found");
-    if (allNews.length === 0) {
+   
+
+	const noNewsItem = document.getElementById("no-item-found");
+	if (allNews.length === 0) {
 		noNewsItem.classList.remove("d-none");
-    } else {
+	} else {
 		noNewsItem.classList.add("d-none");
-    }
+	}
 
+	const showAllNews = document.getElementById("allNews");
 
-
- const showAllNews = document.getElementById("allNews");
- 
-//   toggleSpinner(false)
- showAllNews.textContent = "";
+	//   toggleSpinner(false)
+	showAllNews.textContent = "";
 
 	allNews.forEach((showNews) => {
 		// console.log(showNews)
+      
 
-      
-    const showAllNewsDiv = document.createElement("div");
-       
-      
-	showAllNewsDiv.classList.add("row");
-   
-	showAllNewsDiv.innerHTML = `
+		const showAllNewsDiv = document.createElement("div");
+
+		showAllNewsDiv.classList.add("row");
+
+		showAllNewsDiv.innerHTML = `
      
        <div class="col-md-4 mb-5">
         <img src='${
@@ -106,8 +99,8 @@ const displayNews = (allNews) => {
 
 <div class="d-flex align-items-center mx-4  ">
 <button onclick="  loadNewsDetail('${
-		showNews._id
-	}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+			showNews._id
+		}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Detail View
 </button>
 
@@ -119,11 +112,8 @@ const displayNews = (allNews) => {
  </div>
 
  `;
-         showAllNews.appendChild(showAllNewsDiv);
-       
-    });
-    
-   
+		showAllNews.appendChild(showAllNewsDiv);
+	});
 };
 
 const toggleSpinner = (isLoading) => {
@@ -136,35 +126,27 @@ const toggleSpinner = (isLoading) => {
 	}
 };
 
-
-
 const loadNewsDetail = async (news) => {
-	
-
-    try {
-      const url = ` https://openapi.programming-hero.com/api/news/${news} `;
-      const res = await fetch(url);
-      const data = await res.json();
-      // console.log(data.data);
-      displayNewsDetails(data.data);  
-
-    } catch (error) {
-        console.log(error)
-    }
-	
-    
-
+	try {
+		const url = ` https://openapi.programming-hero.com/api/news/${news} `;
+		const res = await fetch(url);
+		const data = await res.json();
+		// console.log(data.data);
+		displayNewsDetails(data.data);
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const displayNewsDetails = (newsDetail) => {
-    // console.log(newsDetail);
+	// console.log(newsDetail);
 
-    const modalTitle = document.getElementById("newsDetailModal");
-    
-     modalTitle.innerText =` ${newsDetail[0].title} `;
+	const modalTitle = document.getElementById("newsDetailModal");
 
-    const newsDetails = document.getElementById("newsDetail");
-    newsDetails.innerHTML = `
+	modalTitle.innerText = ` ${newsDetail[0].title} `;
+
+	const newsDetails = document.getElementById("newsDetail");
+	newsDetails.innerHTML = `
 
        <div>   <img src="${
 		newsDetail[0].author.img
@@ -181,15 +163,13 @@ const displayNewsDetails = (newsDetail) => {
 		newsDetail[0]?.total_view
 			? newsDetail[0].total_view
 			: "No View Found"
-    } </p>
+	} </p>
     
     `;
-    
-}
+};
 
 // loadNewsDetail()
 
 // loadNewseId();
 
 loadCategory();
-
