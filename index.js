@@ -11,9 +11,12 @@ const loadCategory = async () => {
 };
 
 const displayCategory = (newsId) => {
-	// console.log(newsId)
+	console.log(newsId);
+
+	
+
 	newsId.forEach((news) => {
-		console.log(news);
+		// console.log(news);
 
 		const newsCategory = document.getElementById("news-category");
 
@@ -25,7 +28,7 @@ const displayCategory = (newsId) => {
 
 		newsCategory.appendChild(category);
 	});
-};
+};;
 
 const loadNewseId = async (id) => {
 
@@ -44,10 +47,10 @@ const loadNewseId = async (id) => {
 };
 
 const displayNews = (allNews) => {
-	console.log(allNews);
+	// console.log(allNews);
 	toggleSpinner(false);
-
-   
+	const inputFiled = document.getElementById("input-filed");
+	 inputFiled.value =` ${allNews.length} items found for category  `
 
 	const noNewsItem = document.getElementById("no-item-found");
 	if (allNews.length === 0) {
@@ -63,7 +66,6 @@ const displayNews = (allNews) => {
 
 	allNews.forEach((showNews) => {
 		// console.log(showNews)
-      
 
 		const showAllNewsDiv = document.createElement("div");
 
@@ -114,7 +116,7 @@ const displayNews = (allNews) => {
  `;
 		showAllNews.appendChild(showAllNewsDiv);
 	});
-};
+};;;
 
 const toggleSpinner = (isLoading) => {
 	const loaderSection = document.getElementById("loader");
