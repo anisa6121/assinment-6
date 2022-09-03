@@ -21,9 +21,9 @@ const displayCategory = (newsId) => {
 		const newsCategory = document.getElementById("news-category");
 
 		const category = document.createElement("button");
-		category.classList.add("btn");
+		category.classList.add("button");
 		category.innerHTML = `
-		<button onclick="loadNewseId('${news.category_id}')" type="button" class="btn btn-warning me-2 ">${news.category_name}</button>
+		<button onclick="loadNewseId('${news.category_id}')" type="button" class="btn btn-light me-2 p-3">${news.category_name}</button>
 		`;
 
 		newsCategory.appendChild(category);
@@ -91,7 +91,7 @@ const displayNews = (allNews) => {
 			showNews.author.img
 		}" alt="..." class="thumblain img-thumbnail img-fluid"   > </div>
 
-     <div class="d-flex align-items-center mx-4" >  <p >${
+     <div class="d-flex align-items-center mx-2" >  <p >${
 		showNews.author.name ? showNews.author.name : "No Name Found"
      }</p> </div>
 
@@ -148,7 +148,7 @@ const displayNewsDetails = (newsDetail) => {
 	modalTitle.innerText = ` ${newsDetail[0].title} `;
 
 	const newsDetails = document.getElementById("newsDetail");
-	newsDetails.innerHTML = `
+    newsDetails.innerHTML = `
 
        <div>   <img src="${
 		newsDetail[0].author.img
@@ -170,8 +170,8 @@ const displayNewsDetails = (newsDetail) => {
     `;
 };
 
-// loadNewsDetail()
+loadNewsDetail()
 
-// loadNewseId();
+loadNewseId();
 
 loadCategory();
