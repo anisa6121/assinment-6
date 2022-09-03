@@ -55,7 +55,20 @@ const displayNews = (allNews) => {
             <img src='${
 			showNews.thumbnail_url
 		}' class="img-fluid rounded-start" alt="...">
-    
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">${showNews.title}</h5>
+                <p class="card-text">${
+				showNews.details.slice(0, 200) + "...."
+			}</p>
+              
+
+      
+
+
+
+
         </div>
 
         
