@@ -77,7 +77,12 @@ const displayNews = (allNews) => {
 		showNews.total_view ? showNews.total_view : "No View Found"
      }</p>  </div>
 
-<div class="d-flex align-items-center mx-4  "> <button class=" btn btn-primary"  >Detail</button> </div>
+<div class="d-flex align-items-center mx-4  ">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Detail View
+</button>
+
+</div>
 
 
         </div>
