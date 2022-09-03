@@ -63,7 +63,13 @@ const displayNews = (allNews) => {
 				showNews.details.slice(0, 200) + "...."
 			}</p>
               
+      <div class="d-flex">
 
+          <div>   <img src="${
+			showNews.author.img
+		}" alt="..." class="thumblain img-thumbnail img-fluid"   > </div>
+
+    
       
 
 
