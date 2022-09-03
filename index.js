@@ -74,9 +74,14 @@ const displayNews = (allNews) => {
      }</p> </div>
 
      <div class="d-flex align-items-center" ><p> view: ${
-		showNews.total_view
+		showNews.total_view ? showNews.total_view : "No View Found"
      }</p>  </div>
-                </div>
+
+<div class="d-flex align-items-center mx-4  "> <button class=" btn btn-primary"  >Detail</button> </div>
+
+
+        </div>
+
              
             </div>
       
